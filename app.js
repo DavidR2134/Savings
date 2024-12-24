@@ -18,9 +18,30 @@ document.getElementById("submitButton").addEventListener("click", () => {
     console.log("Completion Date:", completeDateValue);
     console.log("You need to save $", calculateSavings(amountSavedValue, goalValue, completeDateValue).toFixed(2));
 
-    const output = document.getElementById("output")
-    output.innerText = `${titleValue}\n---------------\nAmount Saved: $${amountSavedValue}\nGoal: $${goalValue}\nComplete by: ${completeDateValue}\nYou need to save $${calculateSavings(amountSavedValue, goalValue, completeDateValue).toFixed(2)} in ${differenceInDays(completeDateValue)} days!`;
+    const table = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
+
+    var newRow = table.insertRow();
+
+    var titleCell = newRow.insertCell();
+    var amountSavedCell = newRow.insertCell();
+    var goalCell = newRow.insertCell();
+    var completeCell = newRow.insertCell();
+    var dailySaveCell = newRow.insertCell();
+
+    titleCell.textContent = titleValue;
+    amountSavedCell.textContent = `$${amountSavedValue.toFixed(2)}`;
+    goalCell.textContent = `$${goalValue.toFixed(2)}`;
+    completeCell.textContent = completeDateValue.toISOString().split('T')[0];
+    dailySaveCell.textContent = `$${calculateSavings(amountSavedValue, goalValue, completeDateValue).toFixed(2)}`;
+
+
+    title.value = "";
+    amountSaved.value = "";
+    goal.value = "";
+    completeDate.value = "";
+    
 });
+
 
 function calculateSavings(amountSaved, goalAmount, completedBy) {
     const today = new Date();  // Current date and time
