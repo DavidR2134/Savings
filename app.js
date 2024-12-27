@@ -11,13 +11,6 @@ document.getElementById("submitButton").addEventListener("click", () => {
     const goalValue = parseFloat(goal.value);  // Float for goal amount
     const completeDateValue = new Date(completeDate.value);  // Date object for completion date
 
-    // Log the values to the console
-    console.log("Title:", titleValue);
-    console.log("Amount Saved:", amountSavedValue);
-    console.log("Goal:", goalValue);
-    console.log("Completion Date:", completeDateValue);
-    console.log("You need to save $", calculateSavings(amountSavedValue, goalValue, completeDateValue).toFixed(2));
-
     const table = document.getElementById("dataTable").getElementsByTagName("tbody")[0];
 
     var newRow = table.insertRow();
@@ -53,7 +46,7 @@ function calculateSavings(amountSaved, goalAmount, completedBy) {
     
 
     // Return the savings rate per day
-    return (goalAmount - amountSaved) / differenceBetweenDays;
+    return ((goalAmount - amountSaved) / differenceBetweenDays) * 14;
 }
 
 function differenceInDays(completedBy) {
